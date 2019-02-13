@@ -1,9 +1,11 @@
-### Spark Bot for AWS Lambda ###
+### Webex Teams Bot for AWS Lambda ###
 
-This is a template to create a Spark Bot using AWS Lambda as the external service.
+Inspired by https://github.com/magic7s/sparkbotlambda
+
+This is a template to create a Webex Teams Bot using AWS Lambda as the external service.
 
 The high level process is:
-1) Create a new Spark Bot at https://developer.ciscospark.com/apps.html
+1) Create a new Spark Bot at https://developer.webex.com/my-apps
 	!!Ensure you save the Access Token!!
 2) Create the AWS API Gateway & Lambda Function
 3) Register the Webhook
@@ -17,7 +19,7 @@ LAMBDA FUNCTION
 AWS Lambda requires that all libraries are in a .zip file AT THE ROOT level.
 See http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html
 
-pip install ciscosparkapi -t ./project-dir
+pip install webexteamssdk -t ./project-dir
 cp lambda_function.py ./project-dir
 cd project-dir;zip -r ../mylambdafunction.zip ./ -x \*.pyc ; cd ..
 
