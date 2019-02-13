@@ -21,8 +21,8 @@ def lambda_handler(event, context):
     message = json.loads(event['body'])
     me = api.people.me()
     if message['actorId'] == me.id:
-    	print("Ignoring event due to actorId = me")
-    	return 0
+        print("Ignoring event due to actorId = me")
+        return 0
     # assign the Spark message id to a variable
     msg_id = message['data']['id']
     # assign the Spark roomId to a variable (for the Bot to respond into the right room dynamically)
