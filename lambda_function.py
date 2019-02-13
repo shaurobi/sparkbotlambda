@@ -45,17 +45,3 @@ def lambda_handler(event, context):
     else:
         print("Error: No Text Received in msg")
     return "Finished"
-    
-    
-import requests
-
-url = "http://api.meraki.com/api/v0/networks/L_602356450160820134/cameras/Q2HV-B63K-AAHS/videoLink"
-
-headers = {
-    'x-cisco-meraki-api-key': "77bbdc50bf82dffc58e2b19bde5a5fada7daa2e2",
-    'cache-control': "no-cache"
-    }
-
-response = requests.request("GET", url, headers=headers)
-
-print(response.text)
