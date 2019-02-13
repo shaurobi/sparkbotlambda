@@ -1,6 +1,9 @@
 import json
 import os
 from webexteamssdk import WebexTeamsAPI
+import requests
+
+
 
 api = WebexTeamsAPI()
 
@@ -26,9 +29,33 @@ def lambda_handler(event, context):
     room_id = message['data']['roomId']
     
     t = api.messages.get(msg_id)
+    t = t.lower()
     if t.text:
-        response = 'TEST MESSAGE RECEIVED: ' + t.text
+        if 'camera' in t:
+            url = "http://api.meraki.com/api/v0/networks/L_602356450160820134/cameras/Q2HV-B63K-AAHS/videoLink"
+            headers = {
+                'x-cisco-meraki-api-key': os.environ['MERAKI_DASHBOARD_KEY'],
+                'cache-control': "no-cache"
+                }
+            response = requests.request("GET", url, headers=headers)
+        print(response.text)	
+        else:
+        response = 'NO COMMAND MATCH FOUND: ' + t.text
         api.messages.create(roomId=room_id, text=response)
     else:
         print("Error: No Text Received in msg")
     return "Finished"
+    
+    
+import requests
+
+url = "http://api.meraki.com/api/v0/networks/L_602356450160820134/cameras/Q2HV-B63K-AAHS/videoLink"
+
+headers = {
+    'x-cisco-meraki-api-key': "77bbdc50bf82dffc58e2b19bde5a5fada7daa2e2",
+    'cache-control': "no-cache"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
