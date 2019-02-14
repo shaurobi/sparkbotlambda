@@ -36,6 +36,12 @@ def lambda_handler(event, context):
         api.messages.create(roomId=room_id, text ="Let me find that camera stream")
         url = getCamera()
         api.messages.create(roomId=room_id, text=url)
+    elif 'source' in t.text:
+        print("Request for source code!")
+        api.messages.create(roomId=room_id, text="My source code can be found at \n https://github.com/shaurobi/sparkbotlambda")
+    elif 'help' in t.text:
+        print("Request for Help!")
+        api.messages.create(roomId=room_id, text="Ask for a camera feed, or my source code!")
     else:
         response = 'NO COMMAND MATCH FOUND: ' + t.text
         api.messages.create(roomId=room_id, text=response)
