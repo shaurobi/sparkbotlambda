@@ -2,6 +2,7 @@ import json
 import os
 from webexteamssdk import WebexTeamsAPI
 import requests
+import random
 
 api = WebexTeamsAPI()
 
@@ -81,7 +82,7 @@ def messageHandler(inc_message):
         msg = getDadJoke()
         msgtype = "text"
     else:
-        msg = "NO COMMAND MATCH FOUND:"+inc_message
+        msg = "NO COMMAND MATCH FOUND:" + inc_message
         msgtype="text"
     
     return msg, msgtype
